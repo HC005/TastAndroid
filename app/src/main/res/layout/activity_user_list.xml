@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/back"
+    android:layout_height="match_parent"
+    tools:context=".UserListActivity">
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshapewhitebg"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:text="Logout"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/user_rec"
+        android:layout_above="@+id/lay"
+        android:layout_below="@+id/logout"/>
+
+   <LinearLayout
+       android:id="@+id/lay"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentRight="true"
+       android:gravity="right"
+       android:layout_margin="10dp"
+       android:orientation="horizontal">
+
+       <Button
+           android:id="@+id/previous"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Previous"
+           android:textAllCaps="false"
+           android:textColor="@color/white"
+           android:background="@drawable/buttonshapewhitebg"/>
+
+       <Button
+           android:id="@+id/next"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Next"
+           android:textAllCaps="false"
+           android:textColor="@color/white"
+           android:layout_marginLeft="5dp"
+           android:background="@drawable/buttonshapewhitebg"/>
+
+   </LinearLayout>
+
+</RelativeLayout>
