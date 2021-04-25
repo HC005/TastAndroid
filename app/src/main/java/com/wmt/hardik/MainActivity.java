@@ -27,9 +27,9 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText username, email, password;
+    EditText username, email, password, cofirmpassword;
     Button signup;
-    String usernamestr, emailstr, passstr;
+    String usernamestr, emailstr, passstr, confirmpassstr;
     SessionManager sessionManager;
     SharedPreferences login_sharedPreferences;
     private static final String PREF_NAME = "Pref";
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        cofirmpassword = findViewById(R.id.confpassword);
         signup = findViewById(R.id.sugn_up);
 
         pDialog = new ProgressDialog(MainActivity.this);
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         usernamestr = username.getText().toString();
         passstr = password.getText().toString();
         emailstr = email.getText().toString();
+        confirmpassstr = cofirmpassword.getText().toString();
 
         Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
         Matcher matcher = pattern.matcher(passstr);
@@ -88,14 +90,17 @@ public class MainActivity extends AppCompatActivity {
         }else if (emailstr.length()==0){
             Toast.makeText(this, "Email Require", Toast.LENGTH_SHORT).show();
         }else if (usernamestr.length()<6){
-            Toast.makeText(this, "Username must be graterthan 6 letter", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Username must be graterthan 6 letter", Toast.LENGTH_LONG).show();
         }else if (passstr.length()<6){
-            Toast.makeText(this, "Password must be graterthan 6 letter", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password must be graterthan 6 letter", Toast.LENGTH_LONG).show();
         }else if (!isStringContainsSpecialCharacter){
-            Toast.makeText(this, "Password must be contain special character", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password must be contain special character", Toast.LENGTH_LONG).show();
         }else if (!emailstr.matches(emailPattern)){
             Toast.makeText(this, "Enter valid formate email", Toast.LENGTH_SHORT).show();
-        }else {
+        } else if (!passstr.equals(confirmpassstr)){
+            Toast.makeText(this, "Password and Confirm Password must be same", Toast.LENGTH_LONG).show();
+        }
+        else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (isNetworkConnected()) {
                     showpDialog();
